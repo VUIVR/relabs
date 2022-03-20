@@ -1,0 +1,24 @@
+.authPage {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.authForm {
+    padding: 10px;
+    color: #FFBD73;
+    border: 1px solid  #FFBD73;
+    border-radius: 5px;
+    background-color: #024A68;
+}
+
+h3, button {
+    text-align: center;
+    margin: 0 auto;
+    
+}
+

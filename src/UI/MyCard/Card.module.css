@@ -1,0 +1,28 @@
+.card {
+    width: 100px;
+    padding: 5px;
+    background-color: white;
+    margin:0 10px 10px 0;     
+}
+
+.discount {
+    width: fit-content;
+    color: rgb(243, 89, 115);
+    border-radius: 25%;
+    position: relative;
+    top: -15px;
+    background-color: white;
+    padding: 2px;
+    font-size: 0.5rem;
+    
+}
+
+.totalPrice {
+    color: black;
+}
+
+.creditProd {
+    padding: 5px;
+    border-radius:50%;
+    background-color: blue;
+}
