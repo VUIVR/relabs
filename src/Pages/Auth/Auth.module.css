@@ -18,7 +18,16 @@
 
 h3, button {
     text-align: center;
-    margin: 0 auto;
-    
+    margin: 0 auto;    
 }
 
+.valid {
+    display: none;
+}
+
+.error {
+    display: block;
+    color: red;
+    font-size: small;
+    transition: display 1s ease-out 1s;;
+}

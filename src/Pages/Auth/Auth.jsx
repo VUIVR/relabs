@@ -1,39 +1,63 @@
 import React, { useState } from "react";
+import Modal from "../../UI/Modal/Modal";
+import Loading from "../../UI/loading/Loading";
 import st from "./Auth.module.css";
+import { useNavigate } from "react-router-dom";
 
 function Auth() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState();
   const [validate, setValidate] = useState({
     email: "",
-    password: "",
-    formErrors: { email: "", password: "" },
+    pass: "",
     emailValid: false,
+    emailError: false,
     passwordValid: false,
-    formValid: false,
+    passwordError: false
   });
 
   function handleUserInput(e) {
     const name = e.target.name;
-    const value = e.target.value;
-    this.setState({ [name]: value }, () => {
-      this.validateField(name, value);
-    });
+    const value = e.target.value.trim();
+    setValidate((prev) => ({ ...prev, [name]: value }));
   }
 
   function validateEmail(email) {
-    var patternEmail = /^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i;
-    return patternEmail.test(String(email).toLowerCase());
+    const patternEmail = /^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i;
+    patternEmail.test(email)
+      ? setValidate((prev) => ({ ...prev, emailValid: true, emailError: false }))
+      : setValidate((prev) => ({ ...prev, emailValid: false,  emailError: true }));
   }
 
   function validatePass(pass) {
-    var patternPass = /^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i;
-    return patternPass.test(String(pass).toLowerCase());
+    const patternPass = /^[0-9a-zA-Z!@#$%^&*]{8,20}$/i;
+    patternPass.test(pass)
+      ? setValidate((prev) => ({ ...prev, passwordValid: true, passwordError:false }))
+      : setValidate((prev) => ({ ...prev, passwordValid: false, passwordError:true }));
+  }
+
+  async function checkValidate() {
+    validateEmail(validate.email);
+    validatePass(validate.pass);
+
+    if (validate.passwordValid && validate.emailValid) {
+      setLoading(
+        <Modal>
+          <Loading />
+          <div>Авторизация ....</div>
+        </Modal>
+      );
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+    }
   }
 
   return (
     <main className={st.authPage}>
       <div className={st.authForm}>
         <h3>Авторизация</h3>
-        <form>
+        <form disable>
           <label htmlFor="email">
             Электронная почта
             <input
@@ -44,7 +68,9 @@ function Auth() {
               onChange={(e) => handleUserInput(e)}
             />
           </label>
-          <div className={st.errorEmail}>Email введен не корректно</div>
+          <div className={validate.emailError ? st.error : st.valid}>
+            Email введен не корректно
+          </div>
           <label htmlFor="pass">
             Пароль
             <input
@@ -55,18 +81,21 @@ function Auth() {
               onChange={(e) => handleUserInput(e)}
             />
           </label>
-          <div className={st.errorPass}>
+          <div className={validate.passwordError ? st.error : st.valid}>
             Пароль введен некорректно. Минимум 1 Заглавная буква
           </div>
-          <button type="submit" className={st.button}>
+          <button
+            type="button"
+            className={st.button}
+            onClick={() => checkValidate()}
+          >
             Войти
           </button>
         </form>
+        {loading}
       </div>
     </main>
   );
 }
 
 export default Auth;
-
-/* /^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i */

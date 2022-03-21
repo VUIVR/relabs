@@ -1,0 +1,20 @@
+.backround {
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(247, 95, 95, 0.295);
+}
+
+.modal {
+    width: fit-content;
+    padding: 10px;
+    color: #FFBD73;
+    border: 1px solid  #FFBD73;
+    border-radius: 5px;
+    background-color: #024A68;
+}
