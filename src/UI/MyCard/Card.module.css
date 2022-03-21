@@ -1,8 +1,9 @@
 .card {
-    width: 100px;
-    padding: 5px;
+    width: 150px;
+    padding: 10px;
     background-color: white;
-    margin:0 10px 10px 0;     
+    margin: 0 10px 10px 0;
+    border-radius: 5px;
 }
 
 .discount {
@@ -13,16 +14,69 @@
     top: -15px;
     background-color: white;
     padding: 2px;
-    font-size: 0.5rem;
-    
+    font-size: 0.8rem;
 }
 
 .totalPrice {
     color: black;
+    font-weight: bold;
+}
+
+.price {
+    color: grey;
+    font-size: 0.8rem;
+    text-decoration: line-through;
+    /* font-weight: normal; */
+}
+
+.title {
+    color: grey;
+    font-size: small;
+    display: inline;
 }
 
 .creditProd {
-    padding: 5px;
-    border-radius:50%;
+    padding: 5px 10px 5px 5px;
+    border-radius: 50%;
     background-color: blue;
+    width: fit-content;
+    
+}
+
+.rating {
+    color: rgb(250, 32, 104);
+    font-size: large;
+}
+
+.numOtziv{
+    color: grey;
+    font-size: small;
+}
+
+.creditProd{
+    color: black;
+    border-radius: 30px;
+    background: linear-gradient(to right, rgb(255, 255, 255), rgb(248, 195, 19));
+    font-size: small;
+    font-weight: 500;
+}
+
+.buy {
+    width: fit-content;
+    margin-top: 10px;
+    display: flex;
+}
+
+.button {
+    padding: 5px 15px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(250, 32, 104);
+}
+
+.heart {
+    color: rgb(250, 32, 104);
+    font-size: x-large;
+    margin-left: 10px;
+    font-weight: 900;
 }

@@ -17,7 +17,7 @@ function Shop() {
         return Math.round(this.price * ((100 - this.discount) / 100));
       },
       raiting: 5,
-      creditProd: "Рассрочка 0-0-6",
+      creditProd: "РАССРОЧКА 0-0-6",
     },
     {
       id: 2,
@@ -32,7 +32,7 @@ function Shop() {
         return Math.round(this.price * ((100 - this.discount) / 100));
       },
       raiting: 3.2,
-      creditProd: 'Кредит "Пожизненный"',
+      creditProd: 'КАК ИППОТЕКА',
     },
   ];
   const [items, setItems] = useState();
@@ -47,7 +47,7 @@ function Shop() {
   return (
     <div className={st.shop}>
       <h3>Товары</h3>
-      {items}
+      <div className={st.itemList}>{items}</div>
     </div>
   );
 }

@@ -1,10 +1,11 @@
 .shop {
     width: 100%;
     padding: 5px;
+    color: #FFBD73;    
+}
+
+.itemList {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: #FFBD73;
-    
+    justify-content: center; 
+    flex-wrap: wrap;
 }
