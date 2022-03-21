@@ -13,32 +13,45 @@ function Auth() {
     emailValid: false,
     emailError: false,
     passwordValid: false,
-    passwordError: false
+    passwordError: false,
   });
 
-  function handleUserInput(e) {
-    const name = e.target.name;
-    const value = e.target.value.trim();
-    setValidate((prev) => ({ ...prev, [name]: value }));
-  }
-
-  function validateEmail(email) {
+  function validateEmail(mail) {
+    setValidate((prev) => ({ ...prev, email: mail }));
     const patternEmail = /^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i;
-    patternEmail.test(email)
-      ? setValidate((prev) => ({ ...prev, emailValid: true, emailError: false }))
-      : setValidate((prev) => ({ ...prev, emailValid: false,  emailError: true }));
+    patternEmail.test(mail)
+      ? setValidate((prev) => ({
+          ...prev,
+          emailValid: true,
+        }))
+      : setValidate((prev) => ({
+          ...prev,
+          emailValid: false,
+        }));
   }
 
-  function validatePass(pass) {
+  function validatePass(password) {
+    setValidate((prev) => ({ ...prev, pass: password }));
     const patternPass = /^[0-9a-zA-Z!@#$%^&*]{8,20}$/i;
-    patternPass.test(pass)
-      ? setValidate((prev) => ({ ...prev, passwordValid: true, passwordError:false }))
-      : setValidate((prev) => ({ ...prev, passwordValid: false, passwordError:true }));
+    patternPass.test(password)
+      ? setValidate((prev) => ({
+          ...prev,
+          passwordValid: true,
+        }))
+      : setValidate((prev) => ({
+          ...prev,
+          passwordValid: false,
+        }));
   }
 
-  async function checkValidate() {
-    validateEmail(validate.email);
-    validatePass(validate.pass);
+  function checkValidate() {
+    validate.emailValid
+      ? setValidate((prev) => ({ ...prev, emailError: false }))
+      : setValidate((prev) => ({ ...prev, emailError: true }));
+
+      validate.passwordValid
+      ? setValidate((prev) => ({ ...prev, passwordError: false }))
+      : setValidate((prev) => ({ ...prev, passwordError: true }));
 
     if (validate.passwordValid && validate.emailValid) {
       setLoading(
@@ -57,7 +70,7 @@ function Auth() {
     <main className={st.authPage}>
       <div className={st.authForm}>
         <h3>Авторизация</h3>
-        <form disable>
+        <form>
           <label htmlFor="email">
             Электронная почта
             <input
@@ -65,7 +78,7 @@ function Auth() {
               name="email"
               type="text"
               value={validate.email}
-              onChange={(e) => handleUserInput(e)}
+              onChange={(e) => validateEmail(e.target.value)}
             />
           </label>
           <div className={validate.emailError ? st.error : st.valid}>
@@ -78,11 +91,11 @@ function Auth() {
               name="pass"
               type="password"
               value={validate.pass}
-              onChange={(e) => handleUserInput(e)}
+              onChange={(e) => validatePass(e.target.value)}
             />
           </label>
           <div className={validate.passwordError ? st.error : st.valid}>
-            Пароль введен некорректно. Минимум 1 Заглавная буква
+            1 заглавная и 8 символов
           </div>
           <button
             type="button"

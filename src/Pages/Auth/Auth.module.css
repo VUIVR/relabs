@@ -27,7 +27,6 @@ h3, button {
 
 .error {
     display: block;
-    color: red;
-    font-size: small;
-    transition: display 1s ease-out 1s;;
+    color: #f36c6c;
+    font-size: small;    
 }
