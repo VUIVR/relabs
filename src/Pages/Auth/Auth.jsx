@@ -49,7 +49,7 @@ function Auth() {
       ? setValidate((prev) => ({ ...prev, emailError: false }))
       : setValidate((prev) => ({ ...prev, emailError: true }));
 
-      validate.passwordValid
+    validate.passwordValid
       ? setValidate((prev) => ({ ...prev, passwordError: false }))
       : setValidate((prev) => ({ ...prev, passwordError: true }));
 
@@ -97,11 +97,7 @@ function Auth() {
           <div className={validate.passwordError ? st.error : st.valid}>
             1 заглавная и 8 символов
           </div>
-          <button
-            type="button"
-            className={st.button}
-            onClick={() => checkValidate()}
-          >
+          <button type="button" onClick={() => checkValidate()}>
             Войти
           </button>
         </form>
