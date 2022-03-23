@@ -1,32 +1,45 @@
 import React, { useState, useEffect } from "react";
 import ListUsers from "../../Components/ListUsers/ListUsers";
+import Websocket from "../../Components/Websocket/websocketList";
+import { getPagesCount } from "../../Utils/pages";
 import st from "./Main.module.css";
 
 function Main() {
   const [users, setUsers] = useState([]);
-  const [searchParams, setSearchParams] = useState({
-    limit: 5,
-    offset: 0,
-  });
+/*   const [limit, setLimit] = useState(5); */
   const [page, setPage] = useState({
-    totalPage:0,
-    page:0
+    pagesCount: 0,
+    page: 0,
   });
 
   useEffect(() => {
     const url = new URL("https://test.relabs.ru/api/users/list");
-    url.searchParams.set("limit", searchParams.limit);
-    url.searchParams.set("offset", searchParams.offset);
+    url.searchParams.set("offset", 0);
 
     async function getUsers() {
       const response = await fetch(url);
       const data = await response.json();
-      console.log(data);
-      setPage((prev)=>({...prev, totalPage:data.total}))
       setUsers(data.items);
+
+      const count = getPagesCount(data.total, data.limit);
+      setPage((prev) => ({ ...prev, pagesCount: count }));
     }
     getUsers();
   }, []);
+
+  useEffect(() => {
+    const newOffset = 0 + 5 * (page.page - 1);
+    
+    const url = new URL("https://test.relabs.ru/api/users/list");
+    url.searchParams.set("offset", newOffset);
+
+    async function getUsers() {
+      const response = await fetch(url);
+      const data = await response.json();
+      setUsers(data.items);
+    }
+    getUsers();
+  }, [page]);
 
   function deleteUser(id) {
     const del = users.filter((elem) => elem.id !== id);
@@ -41,6 +54,7 @@ function Main() {
         page={page}
         setPage={setPage}
       />
+     { <Websocket/>}
     </div>
   );
 }

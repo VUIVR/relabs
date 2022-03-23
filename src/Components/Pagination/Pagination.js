@@ -1,14 +1,17 @@
  import React from 'react'
+ import st from './Pagination.module.css'
+ import {getPagesArray} from '../../Utils/pages'
+ 
 
-function Pagination({totalPage, page, setPage}) {
-  let pagesArray = getPagesArray(totalPages)  //массив из количества страниц
+function Pagination({page, setPage}) {
+  let pagesArray = getPagesArray(page.pagesCount)  //массив из количества страниц
 return (
   <div className={st.pagesWrapper}>
       {pagesArray.map(p =>
         <span
-          onClick={() => changePage(p)}
+          onClick={() => setPage((prev) => ({...prev, page:p }))}
           key={p}
-          className={p === page ? [st.pages, st.pageCurrent].join(' ') : st.pages}>
+          className={p === page.page ? [st.pages, st.pageCurrent].join(' ') : st.pages}>
           {p}
         </span>)}
     </div>

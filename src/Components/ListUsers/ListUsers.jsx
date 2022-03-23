@@ -1,12 +1,10 @@
 import React from "react";
+import { convertDate } from "../../Utils/convertTime";
 import Pagination from "../Pagination/Pagination";
 import st from './LiastUsers.module.css'
 
+
 function ListUsers({ users, deleteUser, page, setPage }) {
-  function convertDate(ctime) {
-    let date = new Date(ctime).toLocaleString().slice(0, -3);
-    return date;
-  }
 
   return (
     <div className={st.listUsers}>
@@ -39,7 +37,7 @@ function ListUsers({ users, deleteUser, page, setPage }) {
           })}
         </tbody>
       </table>
-     { <Pagination page={page} setPage={setPage}/>}
+     <Pagination page={page} setPage={setPage}/>
     </div>
   );
 }

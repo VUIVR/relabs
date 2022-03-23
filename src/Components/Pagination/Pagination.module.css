@@ -1,0 +1,29 @@
+.pagesWrapper {
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.pages {
+    padding: 5px;
+    color: #ffbd73;
+    background-color: transparent;
+    border: 1px solid #ffbd73;
+    cursor: pointer;
+    border-radius: 5px;
+    min-width: 48px;
+    text-align: center;
+    margin: 1px;
+}
+
+.pages:hover {
+    box-shadow: 0 0 5px 2px;
+    transition: box-shadow 0.2s ease-out;
+}
+
+.pageCurrent {
+    color: #3BA3D0;
+    border: 1px solid #3BA3D0;
+    box-shadow: 0 0 5px 2px;
+}
