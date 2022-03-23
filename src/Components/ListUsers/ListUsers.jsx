@@ -4,6 +4,8 @@ import Pagination from "../Pagination/Pagination";
 import st from "./LiastUsers.module.css";
 
 function ListUsers({ users, deleteUser, page, setPage }) {
+
+  
   const list = users.map((user) => {
     return (
       <tr key={user.ctime} className={st.user}>

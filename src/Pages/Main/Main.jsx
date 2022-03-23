@@ -8,38 +8,39 @@ function Main() {
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState({
     pagesCount: 0,
-    page: 0,
+    page: 1,
   });
 
   useEffect(() => {
     const url = new URL("https://test.relabs.ru/api/users/list");
     url.searchParams.set("offset", 0);
+    getUsers(url);
 
-    async function getUsers() {
-      const response = await fetch(url);
+    async function getUsers(urlFetch) {
+      const response = await fetch(urlFetch);
       const data = await response.json();
       setUsers(data.items);
 
-      const count = getPagesCount(data.total, data.limit);
+      const count = getPagesCount(data.total, data.limit); 
       setPage((prev) => ({ ...prev, pagesCount: count }));
     }
-    getUsers();
   }, []);
 
   useEffect(() => {
     const newOffset = 0 + 5 * (page.page - 1);
-    
+
     const url = new URL("https://test.relabs.ru/api/users/list");
     url.searchParams.set("offset", newOffset);
+    getUsers(url);
 
-    async function getUsers() {
-      const response = await fetch(url);
+    async function getUsers(urlFetch) {
+      const response = await fetch(urlFetch);
       const data = await response.json();
       setUsers(data.items);
     }
-    getUsers();
   }, [page]);
 
+  
   function deleteUser(id) {
     const del = users.filter((elem) => elem.id !== id);
     setUsers(del);
@@ -53,7 +54,7 @@ function Main() {
         page={page}
         setPage={setPage}
       />
-     <Websocket/>
+       <Websocket /> 
     </div>
   );
 }

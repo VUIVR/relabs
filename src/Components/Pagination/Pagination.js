@@ -4,7 +4,7 @@
  
 
 function Pagination({page, setPage}) {
-  let pagesArray = getPagesArray(page.pagesCount)  //формирует массив из количества страниц
+  let pagesArray = getPagesArray(page.pagesCount)  //формирует массив c номерами страниц
 return (
   <div className={st.pagesWrapper}>
       {pagesArray.map(elem =>
