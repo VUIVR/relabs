@@ -14,7 +14,7 @@ function ListUsers() {
   useEffect(() => {
     const url = new URL("https://test.relabs.ru/api/users/list");
     url.searchParams.set("offset", 0);
-    /* getUsersAndCount(url); */
+
 
     fetch(url)
       .then((response) => response.json())
