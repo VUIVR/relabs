@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { convertDate } from "../../Utils/convertTime";
+import st from "./websocketList.module.css";
 
 function WebsocketList() {
   const [message, setMessege] = useState([]);
-
+  
   let socket = new WebSocket("wss://test.relabs.ru/event");
-
+  
   useEffect(() => {
     socket.onopen = function () {
       console.log("Соединение установлено");
     };
 
     socket.onmessage = function (event) {
-     if (message.length < 10)
-        { setMessege((prev) => [JSON.parse(event.data), ...prev])}
-        else { let shotMess = message.splice(-9)
-          setMessege(() => [JSON.parse(event.data), shotMess]);}
+      setMessege((prev) => [...prev, JSON.parse(event.data)]);
     };
+  }, []);
 
+
+  useEffect(() => {
     socket.onclose = function (event) {
-      if (event.wasClean) {
-        console.log(
-          `Соединение закрыто, ${event.code} причина=${event.reason}`
-        );
-      } else {
-        console.log("Соединение прервано");
-      }
+      console.log("Соединение закрыто");
     };
 
     socket.onerror = function (error) {
@@ -32,20 +28,29 @@ function WebsocketList() {
     };
   });
 
+  useEffect(() => {
+    socket.onmessage = function (event) {
+      setMessege((prev) => [JSON.parse(event.data), ...prev]);
+    };
+  }, [message]);
+
   return (
-    <div>
+    <div className={st.listEvents}>
+      <h2>События</h2>
       <table>
-        <tbody>
+        <thead className={st.thead}>
           <tr>
+            <td>Номер</td>
             <td>Время</td>
-            <td></td>
+            <td>Событие</td>
           </tr>
+        </thead>
+        <tbody>
           {message.map((elem, index) => {
-            console.log(elem.ctime);
             return (
-              <tr key={elem.ctime}>
+              <tr key={index}>
                 <td>{index}</td>
-                <td>{elem.ctime}</td>
+                <td>{convertDate(elem.ctime)}</td>
                 <td>{elem.event}</td>
               </tr>
             );

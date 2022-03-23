@@ -4,15 +4,15 @@
  
 
 function Pagination({page, setPage}) {
-  let pagesArray = getPagesArray(page.pagesCount)  //массив из количества страниц
+  let pagesArray = getPagesArray(page.pagesCount)  //формирует массив из количества страниц
 return (
   <div className={st.pagesWrapper}>
-      {pagesArray.map(p =>
+      {pagesArray.map(elem =>
         <span
-          onClick={() => setPage((prev) => ({...prev, page:p }))}
-          key={p}
-          className={p === page.page ? [st.pages, st.pageCurrent].join(' ') : st.pages}>
-          {p}
+          onClick={() => setPage((prev) => ({...prev, page:elem }))}
+          key={elem}
+          className={elem === page.page ? [st.pages, st.pageCurrent].join(' ') : st.pages}>
+          {elem}
         </span>)}
     </div>
 )

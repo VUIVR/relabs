@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar/Navbar";
 import Auth from "./Pages/Auth/Auth";
 import Shop from "./Pages/Shop/Shop";
-import EmptyPage from "./Pages/EmptyPage/EmptyPage";
+import EmptyPage from "./Pages/404/EmptyPage";
 import Main from "./Pages/Main/Main";
 
 

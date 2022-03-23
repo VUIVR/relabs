@@ -6,7 +6,6 @@ import st from "./Main.module.css";
 
 function Main() {
   const [users, setUsers] = useState([]);
-/*   const [limit, setLimit] = useState(5); */
   const [page, setPage] = useState({
     pagesCount: 0,
     page: 0,
@@ -54,7 +53,7 @@ function Main() {
         page={page}
         setPage={setPage}
       />
-     { <Websocket/>}
+     <Websocket/>
     </div>
   );
 }

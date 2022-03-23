@@ -9,7 +9,7 @@
 }
 
 .authForm {
-    padding: 10px;
+    padding: 5px 25px 10px 25px;
     color: #FFBD73;
     border: 1px solid  #FFBD73;
     border-radius: 5px;
@@ -30,3 +30,14 @@ h3, button {
     color: #f36c6c;
     font-size: small;    
 }
+
+label {
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+.margtop {
+margin-top: 10px;
+  }
+

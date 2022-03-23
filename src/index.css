@@ -35,8 +35,3 @@ input:hover, input:focus {
   transition: box-shadow 0.2s ease-out;
 }
 
-label {
-  font-size: 0.7rem;
-  display: block;
-  margin-bottom: 0.25rem;
-}

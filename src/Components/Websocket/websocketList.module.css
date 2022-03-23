@@ -2,13 +2,13 @@ h2 {
     text-align: center;
 }
 
-.listUsers {
+.listEvents {
     padding: 10px;
     color: #FFBD73;
     border: 1px solid #FFBD73;
     border-radius: 5px;
     background-color: #024A68;
-    margin-bottom: 10px;
+    margin-left: 10px;
 }
 
 td {
@@ -23,4 +23,3 @@ td {
 .thead {
     font-weight: bold;
 }
-
