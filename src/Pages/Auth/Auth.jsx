@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function Auth() {
   const navigate = useNavigate();
-  
+
   const [loading, setLoading] = useState();
   const [validate, setValidate] = useState({
     email: "",
@@ -16,8 +16,7 @@ function Auth() {
     passwordValid: false,
     passwordError: false,
   });
-  
-  
+
   function validateEmail(mail) {
     setValidate((prev) => ({ ...prev, email: mail }));
     const patternEmail = /^[\w]{1}[\w-\.]*@[\w-]+\.[a-z]{2,4}$/i;
@@ -99,7 +98,11 @@ function Auth() {
           <div className={validate.passwordError ? st.error : st.valid}>
             1 заглавная, мин. 8 символов
           </div>
-          <button type="button" className={st.margtop} onClick={() => checkValidate()}>
+          <button
+            type="button"
+            className={st.margtop}
+            onClick={() => checkValidate()}
+          >
             Войти
           </button>
         </form>
