@@ -5,13 +5,13 @@ import st from "./Shop.module.css";
 
 function Shop() {
   
- const cardList = defaultItems.map((item1) => {
-    return <MyCard item={item1} />;
+ const cardList = defaultItems.map((item) => {
+    return <MyCard item={item} key={item.id}/>;
   }); 
 
   return (
     <div className={st.shop}>
-      <div className={st.container}>
+      <div className={['container',st.containerCard].join(' ')}>
         <h2>Товары</h2>
         <div className={st.itemList}>{cardList}</div>
       </div>

@@ -31,10 +31,10 @@ function Auth() {
         }));
   }
 
-  function validatePass(password) {
-    setValidate((prev) => ({ ...prev, pass: password }));
+  function validatePass(event) {
+    setValidate((prev) => ({ ...prev, pass: event.target.value }));
     const patternPass = /^[0-9a-zA-Z!@#$%^&*]{8,20}$/i;
-    patternPass.test(password)
+    patternPass.test(event.target.value)
       ? setValidate((prev) => ({
           ...prev,
           passwordValid: true,
@@ -42,7 +42,7 @@ function Auth() {
       : setValidate((prev) => ({
           ...prev,
           passwordValid: false,
-        }));
+        }));     
   }
 
   function checkValidate() {
@@ -69,7 +69,7 @@ function Auth() {
 
   return (
     <main className={st.authPage}>
-      <div className={st.authForm}>
+      <div className='container'>
         <h2>Авторизация</h2>
         <form>
           <label htmlFor="email">
@@ -80,6 +80,7 @@ function Auth() {
               type="text"
               value={validate.email}
               onChange={(e) => validateEmail(e.target.value)}
+              onKeyDown={(e)=> {if(e.key === "Enter") {checkValidate()}}} 
             />
           </label>
           <div className={validate.emailError ? st.error : st.valid}>
@@ -92,7 +93,8 @@ function Auth() {
               name="pass"
               type="password"
               value={validate.pass}
-              onChange={(e) => validatePass(e.target.value)}
+              onChange={(e) => {validatePass(e)}}
+              onKeyDown={(e)=> {if(e.key === "Enter") {checkValidate()}}}                         
             />
           </label>
           <div className={validate.passwordError ? st.error : st.valid}>

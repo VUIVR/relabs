@@ -1,5 +1,6 @@
+import moment from "moment"
+
 export function convertDate(ctime) {
-    let date = new Date(ctime).toLocaleString().slice(0, -3);
-    
-    return date;
-  }
+  const date = moment(ctime).format('DD.MM.YYYY HH:mm');
+  return date;
+}

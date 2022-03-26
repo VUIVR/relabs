@@ -1,19 +1,12 @@
 .shop {
     width: 100%;
     padding: 5px;
-    color: #FFBD73;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.container {
-    width: fit-content;
-    padding: 10px;
-    border: 1px solid #FFBD73;
-    border-radius: 5px;
-    background-color: #024A68;
-    margin-left: 10px;
+.containerCard {   
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,7 +14,6 @@
 
 .itemList {
     display: flex;
-    /* justify-content: center; */
     flex-wrap: wrap;
 }
 

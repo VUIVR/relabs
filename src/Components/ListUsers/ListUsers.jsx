@@ -42,9 +42,10 @@ function ListUsers() {
     const del = users.filter((elem) => elem.id !== id);
     setUsers(del);
   }
+ 
 
   return (
-    <div className={st.listUsers}>
+    <div className='container'>
       <h2>Список пользователей</h2>
       <table>
         <thead className={st.thead}>
@@ -79,4 +80,4 @@ function ListUsers() {
   );
 }
 
-export default ListUsers;
+export default React.memo(ListUsers);

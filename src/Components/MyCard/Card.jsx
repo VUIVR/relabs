@@ -19,7 +19,7 @@ function MyCard({ item }) {
   }
 
   return (
-    <div className={st.card} key={item.id}>
+    <div className={st.card}>
       <img src={item.img} alt={item.model} width="100%" />
       <div className={st.discount}>-{item.discount}%</div>
       <div className={st.totalPrice}>
@@ -31,7 +31,7 @@ function MyCard({ item }) {
       </div>
       <div className={st.rating}>
         {raiting}
-        <spam className={st.numOtziv}>{item.raiting}</spam>
+        <span className={st.numOtziv}>{item.raiting}</span>
       </div>
       <div className={st.creditProd}>{item.creditProd}</div>
       <div className={st.buy}>

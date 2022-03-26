@@ -1,7 +1,7 @@
 export const defaultItems = [
   {
     id: 1,
-    img: "./Images/Iph12.jpg",
+    img: "./Images/Shop/Iph12.jpg",
     brand: "Apple",
     model: "Iphone 12",
     memory: 256,
@@ -14,7 +14,7 @@ export const defaultItems = [
   },
   {
     id: 2,
-    img: "./Images/Iph15.jpg",
+    img: "./Images/Shop/Iph15.jpg",
     brand: "Apple",
     model: "Iphone 15",
     memory: 128,

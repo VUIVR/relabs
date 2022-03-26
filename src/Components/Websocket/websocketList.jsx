@@ -1,46 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { convertDate } from "../../Utils/convertTime";
 import st from "./websocketList.module.css";
 
+/* let socket = new WebSocket("wss://test.relabs.ru/event"); */
 function WebsocketList() {
   const [message, setMessege] = useState([]);
-  
-  let socket = new WebSocket("wss://test.relabs.ru/event");
-  
-  useEffect(() => {
-    socket.onopen = function () {
-      console.log("Соединение установлено");
-    };
-
-    socket.onmessage = function (event) {
-      setMessege((prev) => [...prev, JSON.parse(event.data)]);
-    };
-  }, []);
-
 
   useEffect(() => {
-    socket.onclose = function (event) {
+    let socket = new WebSocket("wss://test.relabs.ru/event");
+    socket.onopen = () => {
+      console.log("Соединение Открыто");
+    };
+    socket.onclose = () => {
       console.log("Соединение закрыто");
     };
 
-    socket.onerror = function (error) {
-      console.log(`Содинение закрыто с ошибкой: ${error.message}`);
+    socket.onmessage = (event)=> {
+      setMessege((prev) => [JSON.parse(event.data), ...prev.slice(0, 9)]);
     };
-  });
 
-  useEffect(() => {
-    socket.onmessage = function (event) {
-      setMessege((prev) => [JSON.parse(event.data), ...prev]);
+    return () => {
+      socket.close();
     };
-  }, [message]);
+  }, []);
 
   return (
-    <div className={st.listEvents}>
+    <div className='container'>
       <h2>События</h2>
       <table>
         <thead className={st.thead}>
           <tr>
-            <td>Номер</td>
             <td>Время</td>
             <td>Событие</td>
           </tr>
@@ -49,7 +38,6 @@ function WebsocketList() {
           {message.map((elem, index) => {
             return (
               <tr key={index}>
-                <td>{index}</td>
                 <td>{convertDate(elem.ctime)}</td>
                 <td>{elem.event}</td>
               </tr>
