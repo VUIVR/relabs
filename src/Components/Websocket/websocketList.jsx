@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { convertDate } from "../../Utils/convertTime";
 import st from "./websocketList.module.css";
 
-/* let socket = new WebSocket("wss://test.relabs.ru/event"); */
 function WebsocketList() {
   const [message, setMessege] = useState([]);
 
@@ -15,7 +14,7 @@ function WebsocketList() {
       console.log("Соединение закрыто");
     };
 
-    socket.onmessage = (event)=> {
+    socket.onmessage = (event) => {
       setMessege((prev) => [JSON.parse(event.data), ...prev.slice(0, 9)]);
     };
 
@@ -25,7 +24,7 @@ function WebsocketList() {
   }, []);
 
   return (
-    <div className='container'>
+    <div className="container">
       <h2>События</h2>
       <table>
         <thead className={st.thead}>
