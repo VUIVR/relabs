@@ -1,6 +1,16 @@
+import {
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
+import Paper from '@mui/material/Paper';
 import React, { useState, useEffect } from "react";
 import { convertDate } from "../../Utils/convertTime";
-import st from "./websocketList.module.css";
 
 function WebsocketList() {
   const [message, setMessege] = useState([]);
@@ -24,27 +34,32 @@ function WebsocketList() {
   }, []);
 
   return (
-    <div className="container">
-      <h2>События</h2>
-      <table>
-        <thead className={st.thead}>
-          <tr>
-            <td>Время</td>
-            <td>Событие</td>
-          </tr>
-        </thead>
-        <tbody>
-          {message.map((elem, index) => {
-            return (
-              <tr key={index}>
-                <td>{convertDate(elem.ctime)}</td>
-                <td>{elem.event}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
+    <Container sx={{ maxWidth: 500 }}>
+      <Typography variant="h5" component="h5" sx={{ textAlign: "center" }}>
+        События
+      </Typography>
+      <TableContainer component={Paper} >
+        <Table  aria-label="simple table">
+          <TableHead>
+            <TableRow >
+              <TableCell align="center">Время</TableCell>
+              <TableCell align="center">Событие</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {message.map((elem, index) => (
+              <TableRow
+                key={index}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell align="center">{convertDate(elem.ctime)}</TableCell>
+                <TableCell align="center">{elem.event}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>    
+    </Container>
   );
 }
 

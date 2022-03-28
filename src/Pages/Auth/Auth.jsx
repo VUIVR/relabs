@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Modal from "../../UI/Modal/Modal";
 import Loading from "../../UI/loading/Loading";
-import st from "./Auth.module.css";
 import { useNavigate } from "react-router-dom";
 
 function Auth() {
@@ -42,7 +41,7 @@ function Auth() {
       : setValidate((prev) => ({
           ...prev,
           passwordValid: false,
-        }));     
+        }));
   }
 
   function checkValidate() {
@@ -68,8 +67,8 @@ function Auth() {
   }
 
   return (
-    <main className={st.authPage}>
-      <div className='container'>
+    <main>
+      <div>
         <h2>Авторизация</h2>
         <form>
           <label htmlFor="email">
@@ -80,12 +79,14 @@ function Auth() {
               type="text"
               value={validate.email}
               onChange={(e) => validateEmail(e.target.value)}
-              onKeyDown={(e)=> {if(e.key === "Enter") {checkValidate()}}} 
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  checkValidate();
+                }
+              }}
             />
           </label>
-          <div className={validate.emailError ? st.error : st.valid}>
-            Email введен не корректно
-          </div>
+          <div>Email введен не корректно</div>
           <label htmlFor="pass">
             Пароль
             <input
@@ -93,18 +94,18 @@ function Auth() {
               name="pass"
               type="password"
               value={validate.pass}
-              onChange={(e) => {validatePass(e)}}
-              onKeyDown={(e)=> {if(e.key === "Enter") {checkValidate()}}}                         
+              onChange={(e) => {
+                validatePass(e);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  checkValidate();
+                }
+              }}
             />
           </label>
-          <div className={validate.passwordError ? st.error : st.valid}>
-            1 заглавная, мин. 8 символов
-          </div>
-          <button
-            type="button"
-            className={st.margtop}
-            onClick={() => checkValidate()}
-          >
+          <div>1 заглавная, мин. 8 символов</div>
+          <button type="button" onClick={() => checkValidate()}>
             Войти
           </button>
         </form>

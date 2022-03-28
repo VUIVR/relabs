@@ -1,10 +1,9 @@
-import React, { Children } from "react";
-import st from "./Modal.module.css";
+import React from "react";
 
-function Modal({children}) {
+function Modal({ children }) {
   return (
-    <div className={st.backround}>
-      <div className='container'>{children}</div>
+    <div>
+      <div>{children}</div>
     </div>
   );
 }

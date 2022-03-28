@@ -1,21 +1,25 @@
- import React from 'react'
- import st from './Pagination.module.css'
- import {getPagesArray} from '../../Utils/pages'
- 
+import { Pagination, Stack } from '@mui/material'
+import React from 'react'
 
-function Pagination({page, setPage}) {
-  let pagesArray = getPagesArray(page.pagesCount)  //формирует массив c номерами страниц
-return (
-  <div className={st.pagesWrapper}>
-      {pagesArray.map(elem =>
-        <span
-          onClick={() => setPage((prev) => ({...prev, page:elem }))}
-          key={elem}
-          className={elem === page.page ? [st.pages, st.pageCurrent].join(' ') : st.pages}>
-          {elem}
-        </span>)}
-    </div>
-)
+
+
+function PaginationList({ page, setPage }) {
+
+  return (
+    <Stack spacing={2} >
+      <Pagination
+        count={page.pagesCount}
+        variant="outlined"
+        shape="rounded"        
+        hidePrevButton
+        hideNextButton
+        /* page={page} */
+        onChange={(_, num) => {
+          setPage((prev) => ({ ...prev, page: num }))
+        }}
+      />
+    </Stack>
+  )
 }
 
-export default Pagination 
+export default PaginationList 

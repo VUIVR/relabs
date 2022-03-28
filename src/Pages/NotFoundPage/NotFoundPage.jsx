@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import st from "./NotFoundPage.module.css";
+
 
 function NotFoundPage() {
   const [counter, setCounter] = useState(5);
@@ -12,8 +12,8 @@ function NotFoundPage() {
   }, [counter]);
 
   return (
-    <div className={st.ep}>
-      <div className='container'>
+    <div>
+      <div>
         <img src="./Images/404.png" height="300px" alt="404" />
         <div>
           Вы перейдете на Главную через {counter ? counter : navigate("/")}
