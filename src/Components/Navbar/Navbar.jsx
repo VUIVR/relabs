@@ -1,13 +1,24 @@
+import { AppBar, Box, Button, Container, } from "@mui/material";
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
-    <nav>
-      <NavLink to="/">Главная</NavLink>
-      <NavLink to="/login">Логин</NavLink>
-      <NavLink to="/shop">Магазин</NavLink>
-    </nav>
+    <AppBar position="fixed" component="nav">
+      <Container fixed>
+        <Box >
+          <Button variant="outlined" href="/">
+            <Link to="/">Главная</Link>
+          </Button >
+          <Button variant="outlined">
+            <Link to="/login">Логин</Link>
+          </Button>
+          <Button variant="outlined">
+            <Link to="/shop">Магазин</Link>
+          </Button>
+        </Box>
+      </Container>
+    </AppBar>
   );
 }
 

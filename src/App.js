@@ -4,12 +4,13 @@ import Auth from "./Pages/Auth/Auth";
 import Shop from "./Pages/Shop/Shop";
 import NotFoundPage from "./Pages/NotFoundPage/NotFoundPage.jsx";
 import Main from "./Pages/Main/Main";
+import { Container } from "@mui/material";
 
 
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <Container>
         <Navbar />
         <Routes>
           <Route path='/' element={<Main />} />
@@ -17,7 +18,7 @@ function App() {
           <Route path='shop' element={<Shop />} />
           <Route path='*' element={<NotFoundPage />} />       
         </Routes>
-      </div>
+      </Container>
     </BrowserRouter>
   );
 }

@@ -1,3 +1,11 @@
+import {
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Rating,
+  Typography,
+} from "@mui/material";
 import React from "react";
 
 function MyCard({ item }) {
@@ -15,24 +23,58 @@ function MyCard({ item }) {
   }
 
   return (
-    <div>
-      <img src={item.img} alt={item.model} width="100%" />
-      <div>-{item.discount}%</div>
-      <div>
-        {prettifly(item.totalPrice())} ₽ <span>{prettifly(item.price)} ₽</span>
-      </div>
-      <div>
-        {item.brand} / {item.model} {item.memory}Gb / {item.display}"
-      </div>
-      <div>
-        {raiting}
-        <span>{item.raiting}</span>
-      </div>
-      <div>{item.creditProd}</div>
-      <div>
-        <button>В корзину</button> <span>♡</span>
-      </div>
-    </div>
+    <Card sx={{ maxWidth: 160 }}>
+      <CardMedia
+        component="img"
+        height="200"
+        image={item.img}
+        alt={item.model}
+      />
+      <Typography
+        gutterBottom
+        variant="subtitle2"
+        component="div"
+        sx={{
+          position: "relative",
+          top: "-15px",
+          bgcolor: " inherit",
+          width: "fit-content",
+          p: "3px 7px",
+          borderRadius: "10px",
+        }}
+      >
+        -{item.discount}%
+      </Typography>
+      <CardContent>
+        <Typography variant="body1" component="div" sx={{ fontWeight: "bold" }}>
+          {prettifly(item.totalPrice())} ₽{" "}
+          <Typography
+            variant="body2"
+            component="span"
+            sx={{ textDecoration: "line-through" }}
+          >
+            {prettifly(item.price)} ₽
+          </Typography>
+        </Typography>
+        <Typography variant="body2" component="div">
+          {item.brand} / {item.model} {item.memory}Gb / {item.display}"
+        </Typography>
+        <Typography variant="body1" component="div">
+          <Rating name="read-only" value={item.raiting} readOnly />
+        </Typography>
+        <Typography variant="body2" component="div">
+          {item.creditProd}
+        </Typography>
+        <Typography>
+          <Button variant="outlined" size="small">
+            В корзину
+          </Button>{" "}
+          <Typography variant="h6" component="span">
+            ♡
+          </Typography>
+        </Typography>
+      </CardContent>
+    </Card>
   );
 }
 

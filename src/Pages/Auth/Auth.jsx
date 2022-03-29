@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Modal from "../../UI/Modal/Modal";
 import Loading from "../../UI/loading/Loading";
 import { useNavigate } from "react-router-dom";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 
 function Auth() {
   const navigate = useNavigate();
@@ -67,11 +68,33 @@ function Auth() {
   }
 
   return (
-    <main>
-      <div>
-        <h2>Авторизация</h2>
-        <form>
-          <label htmlFor="email">
+    <Container sx={{ maxWidth: 300 }}>
+      <Box>
+        <Typography variant="h5" component="h5">
+          Авторизация
+        </Typography>
+        <Box component="form">
+          <TextField
+          fullWidth
+            label="Email"
+            variant="standard"
+            value={validate.email}
+            onChange={(e) => validateEmail(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                checkValidate();
+              }
+            }}
+          />
+          <TextField
+          fullWidth
+            id="standard-password-input"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            variant="standard"
+          />
+          {/* <label htmlFor="email">
             Электронная почта
             <input
               id="email"
@@ -85,9 +108,9 @@ function Auth() {
                 }
               }}
             />
-          </label>
-          <div>Email введен не корректно</div>
-          <label htmlFor="pass">
+          </label> */}
+          {/* <div>Email введен не корректно</div> */}
+          {/* <label htmlFor="pass">
             Пароль
             <input
               id="pass"
@@ -103,15 +126,19 @@ function Auth() {
                 }
               }}
             />
-          </label>
-          <div>1 заглавная, мин. 8 символов</div>
-          <button type="button" onClick={() => checkValidate()}>
+          </label> */}
+          {/* <div>1 заглавная, мин. 8 символов</div> */}
+          <Button
+            variant="outlined"
+            size="small"
+            onClick={() => checkValidate()}
+          >
             Войти
-          </button>
-        </form>
+          </Button>
+        </Box>
         {loading}
-      </div>
-    </main>
+      </Box>
+    </Container>
   );
 }
 

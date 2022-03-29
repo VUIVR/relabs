@@ -1,3 +1,5 @@
+import { Container, Typography } from "@mui/material";
+import { Box } from "@mui/system";
 import React from "react";
 import MyCard from "../../Components/MyCard/Card";
 import { defaultItems } from "./defaultItems";
@@ -8,12 +10,12 @@ function Shop() {
   });
 
   return (
-    <div>
-      <div>
-        <h2>Товары</h2>
-        <div>{cardList}</div>
-      </div>
-    </div>
+    <Container component="main">
+      <Box>
+        <Typography>Товары</Typography>
+        <Container>{cardList}</Container>
+      </Box>
+   </Container>
   );
 }
 

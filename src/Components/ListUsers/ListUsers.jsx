@@ -5,6 +5,7 @@ import Pagination from "../Pagination/Pagination";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Paper from "@mui/material/Paper";
 import {
+  Box,
   Container,
   IconButton,
   Table,
@@ -56,14 +57,15 @@ function ListUsers() {
 
   return (
     <Container sx={{ maxWidth: 600 }}>
+      <Box color='Background'>
       <Typography variant="h5" component="h5" sx={{ textAlign: "center" }}>
         Список пользователей
       </Typography>
       <TableContainer component={Paper}>
-        <Table aria-label="simple table">
+        <Table aria-label="simple table" padding='none'>
           <TableHead>
             <TableRow>
-              <TableCell align="center">ID</TableCell>
+              <TableCell align="center" >ID</TableCell>
               <TableCell align="center">Имя</TableCell>
               <TableCell align="center">Роль</TableCell>
               <TableCell align="center">Дата </TableCell>
@@ -98,6 +100,7 @@ function ListUsers() {
         </Table>
       </TableContainer>
       <Pagination page={page} setPage={setPage} />
+      </Box>
     </Container>
   );
 }
