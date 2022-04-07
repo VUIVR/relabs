@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 
 export const theme = createTheme({
-  /* shape: {
+  shape: {
     borderRadius: "5"
   },
   palette: {
@@ -15,7 +15,7 @@ export const theme = createTheme({
     {
       main: '#024a68'
     }
-  }, */
+  },
 
 });
 
